@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+
+
+{% block body %}
+
+<div id="container" style="text-align: center;">
+
+    <img src="smth.png" alt="Profile Pic">
+
+    <h2>First name: {{ current_user.firstName }}</h2>
+    <h4>Last name: {{ current_user.lastName }}</h4>
+
+    <p>Email: {{ current_user.email }}</p>
+
+</div>
+
+{% endblock %}
