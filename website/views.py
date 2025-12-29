@@ -2,6 +2,16 @@ from flask import Blueprint, render_template, redirect, url_for
 from flask_login import login_required, current_user
 
 
+
+
+
+#Adding a very harmless comment.
+#It is goung to affect no one.
+#Last harmless comment. AMALA!!!
+
+
+
+
 views = Blueprint("views", __name__)
 
 @views.route("/user/<id>/home")
