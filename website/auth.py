@@ -88,10 +88,6 @@ def sign_up():
             flash("Password must be at least 7 characters", category='error')
             return redirect(url_for("auth.sign_up"))
 
-        elif len(password2) < 7:
-            flash("Password confirm must be at least 7 characters", category='error')
-            return redirect(url_for("auth.sign_up"))
-
         elif password1 != password2:
             flash("Passwords must match", category='error')
             return redirect(url_for("auth.sign_up"))
