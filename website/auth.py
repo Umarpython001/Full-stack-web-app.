@@ -7,8 +7,10 @@ import uuid
 import os
 
 
+PROFILE_PICS_SUBDIR = "profile_pics"
 
-def checkFile(name: str) -> bool:
+
+def checkFile(name: str) -> bool: #This checks the file name to ensure that it is compatible
     allowed = {"png", "gif", "jpg", "jpeg", "avif", "webp"}
     if "." in set(name):
         diff = name.split(".")
@@ -25,7 +27,7 @@ def checkFile(name: str) -> bool:
         return False
     return False
 
-def checkUserConditions(firstName, lastName, email, password1, password2): 
+def checkUserConditions(firstName, lastName, email, password1, password2): #This collects all the user's primary info and checks if it's correct. It then creates a user model if it is.
     
     user = User.query.filter_by(email = email).first()
  
@@ -61,7 +63,7 @@ def checkUserConditions(firstName, lastName, email, password1, password2):
             
     return user
 
-auth = Blueprint("auth", __name__)
+auth = Blueprint("auth", __name__) #Initianlises the auth blueprint
 
 
 
@@ -108,7 +110,7 @@ def login():
 
 
 
-
+"""Add a feature such that a user doesn't have to type all their information again if one thing goes wrong"""
 @auth.route("/sign_up", methods = ["POST", "GET"])
 def sign_up():
 
@@ -147,15 +149,17 @@ def sign_up():
                 Save it to the destination folder. 
                 Add it to the user model.
             """
+            profile_pic_dir = os.path.join(current_app.config["UPLOAD_FOLDER"], PROFILE_PICS_SUBDIR)
+
             name, ext = profilePic.filename.rsplit(".", 1) #Split the file into the name and its extension
 
-            unique_file_name = f"{uuid.uuid4().hex}.{ext}" #Generates a unique file name for that file.
+            unique_file_name = f"{uuid.uuid4().hex}.{ext.lower()}" #Generates a unique file name for that file.
 
-            filePath = os.path.join(current_app.root_path, "static", "uploads", "profile_pics", unique_file_name) #Create a full file path for the image
+            unique_file_path = os.path.join(profile_pic_dir, unique_file_name) #Generates a unique file path for that picture with the uique file name
 
-            profilePic.save(filePath) #Stores the image in the destination folder with the full file path(folder name + unique name generated). 
+            profilePic.save(unique_file_path) #Stores the image in the destination folder with the full file path(folder name + unique name generated). 
 
-            user.profilePic = filePath
+            user.profilePic = f"{PROFILE_PICS_SUBDIR}/{unique_file_name}" #Stores the relative file name in the DB. Refrences that particular image with the user.
 
             
             

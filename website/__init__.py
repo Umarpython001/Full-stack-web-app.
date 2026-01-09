@@ -1,12 +1,12 @@
 from flask import Flask, url_for
 from flask_sqlalchemy import SQLAlchemy
-from os import path
+import os
 from flask_login import LoginManager, current_user
 
 
 
 def create_db(app):
-    if not path.exists(f"website\database.db"):
+    if not os.path.exists(f"website\database.db"):
         with app.app_context():
             db.create_all()
 
@@ -24,6 +24,7 @@ def create_app():
 
     app.config["SECRET_KEY"] = "We ArE UnItY"
     app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///database.db"
+    app.config["UPLOAD_FOLDER"] = os.path.join(app.root_path, "static", "uploads")
 
     
 
