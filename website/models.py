@@ -1,7 +1,6 @@
 from . import db
-
-
 from flask_login import UserMixin
+
 
 
 class User(db.Model, UserMixin):
@@ -14,6 +13,8 @@ class User(db.Model, UserMixin):
     lastName = db.Column(db.String(150))
 
     password = db.Column(db.String(250))
+
+    profilePic = db.Column(db.String(250), nullable=True, default="default_image_headshot.png")
 
     tasks = db.relationship("Task")
 

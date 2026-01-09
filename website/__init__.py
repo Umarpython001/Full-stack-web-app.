@@ -24,6 +24,7 @@ def create_app():
 
     app.config["SECRET_KEY"] = "We ArE UnItY"
     app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///database.db"
+
     
 
     db.init_app(app)
@@ -46,8 +47,7 @@ def create_app():
         person = User.query.get_or_404(int(id))
         return person
 
-
-    print(app.url_map)
+    create_db(app)
 
     return app
 

@@ -6,7 +6,7 @@
 
 <div id="container" style="text-align: center;">
 
-    <img src="smth.png" alt="Profile Pic">
+    <img src='{{ current_user.profilePic }}' alt="Profile Pic">
 
     <h2>First name: {{ current_user.firstName }}</h2>
     <h4>Last name: {{ current_user.lastName }}</h4>
