@@ -20,7 +20,7 @@ class User(db.Model, UserMixin):
                             
                             db.String(250), 
                             nullable=True, 
-                            default=f"{PROFILE_PICS_SUBDIR}/default_image_headshot.png"
+                            default=f"uploads/{PROFILE_PICS_SUBDIR}/default_image_headshot.png"
 
                         )
 

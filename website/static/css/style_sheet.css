@@ -11,3 +11,11 @@ body{
     border-radius: 23em;
 
 }
+
+
+#profile_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* height: 100vh; */
+}

@@ -157,9 +157,9 @@ def sign_up():
 
             unique_file_path = os.path.join(profile_pic_dir, unique_file_name) #Generates a unique file path for that picture with the uique file name
 
-            profilePic.save(unique_file_path) #Stores the image in the destination folder with the full file path(folder name + unique name generated). 
+            profilePic.save(unique_file_path) #Stores the image in the destination folder with the full file path(folder name + unique name generated). It means "Save this image at this location on my device"
 
-            user.profilePic = f"{PROFILE_PICS_SUBDIR}/{unique_file_name}" #Stores the relative file name in the DB. Refrences that particular image with the user.
+            user.profilePic = f"uploads/{PROFILE_PICS_SUBDIR}/{unique_file_name}" #Stores the relative file name in the DB. Refrences that particular image with the user.
 
             
             

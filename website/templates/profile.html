@@ -4,14 +4,21 @@
 
 {% block body %}
 
-<div id="container" style="text-align: center;">
+<div id="profile_container" class="card" style="text-align: center; width: 18rem;">
 
-    <img src='{{ current_user.profilePic }}' alt="Profile Pic">
+    
+    <img src="{{ url_for('static', filename=current_user.profilePic) }}" alt="Profile Pic" id="profile_pic" class="card-img-top">        
 
-    <h2>First name: {{ current_user.firstName }}</h2>
-    <h4>Last name: {{ current_user.lastName }}</h4>
+    <div id="profile_info" class="card-body">
 
-    <p>Email: {{ current_user.email }}</p>
+        <h3 id="first_name" class="card-title">First name: {{ current_user.firstName }}</h3>
+        <h5>Last name: {{ current_user.lastName }}</h5>
+
+        <p>Email: <a href="mailto:{{ current_user.email }}">{{ current_user.email }}</a></p>
+
+
+    </div>
+    
 
 </div>
 

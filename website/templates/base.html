@@ -64,21 +64,21 @@
             
                 {% if category=='error' %}
 
-                    <div class="alert alert-warning" role="alert" id="successAlert">
+                    <div class="alert alert-warning" role="alert" id="errorAlert">
 
                         {{ message }} 
 
-                        <button class="close" id="successClear" type="button" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>
+                        <button class="close" id="errorClear" type="button" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>
 
                     </div>
                 
                 {% else %}
 
-                    <div class="alert alert-success" role="alert" id="errorAlert">
+                    <div class="alert alert-success" role="alert" id="successAlert">
 
                         {{ message }} 
 
-                        <button class="close" id="errorClear" type="button" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>
+                        <button class="close" id="successClear" type="button" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>
 
                     </div>
 
