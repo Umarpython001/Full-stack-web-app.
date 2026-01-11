@@ -9,11 +9,11 @@
         crossorigin="anonymous">
 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style_sheet.css') }}">
+
     {% block title %}{% endblock %}
 </head>
 <body style="margin: 0.5em;">
 
-    
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="navbar">
         <div class="container-fluid">
 
@@ -54,7 +54,7 @@
 
         </div>
         
-    </nav>
+    </nav><br>
 
     {% with messages = get_flashed_messages(with_categories=true) %}
     
@@ -64,21 +64,21 @@
             
                 {% if category=='error' %}
 
-                    <div class="alert alert-warning" role="alert">
+                    <div class="alert alert-warning" role="alert" id="errorAlert">
 
                         {{ message }} 
 
-                        <button class="close" type="button" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>
+                        <button class="close" id="errorClear" type="button" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>
 
                     </div>
                 
                 {% else %}
 
-                    <div class="alert alert-success" role="alert">
+                    <div class="alert alert-success" role="alert" id="successAlert">
 
                         {{ message }} 
 
-                        <button class="close" type="button" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>
+                        <button class="close" id="successClear" type="button" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>
 
                     </div>
 
@@ -100,6 +100,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js" integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y" crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename = 'js/script.js' ) }}"></script>
 
 </body>
 </html>

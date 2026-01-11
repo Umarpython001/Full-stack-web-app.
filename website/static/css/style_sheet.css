@@ -1,0 +1,21 @@
+body{
+    margin: 0;
+}
+
+.alert{
+    border-radius: 23em;
+}
+
+#navbar{
+
+    border-radius: 23em;
+
+}
+
+
+#profile_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* height: 100vh; */
+}
