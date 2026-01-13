@@ -1,6 +1,6 @@
 #Ignore the instance folder where the database is
 instance
 #ignore all uploads
-website/static/uploads
+website/static/uploads/
 #ignore .pyc files in __pycache__ folder
-website/__pycache__/*
+website/__pycache__/
