@@ -1,5 +1,3 @@
-
-
 const errorAlert  = document.getElementById("errorAlert")
 const successAlert = document.getElementById("successAlert")
 

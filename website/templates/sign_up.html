@@ -6,14 +6,14 @@
 <h1 style="text-align: center;">Sign Up Page</h1>
 
 
-<form action="/sign_up" method="post" enctype="multipart/form-data">
+<form action="/sign_up" method="post" enctype="multipart/form-data" id="SignUpForm">
 
 
 
     <div class="mb-3">
 
-        <label for="firstName" class="form-label">Enter First Name</label>
-        <input type="text" name="firstName" id="firstName" placeholder="First Name" class="form-control">
+        <label for="firstName_signUp" class="form-label">Enter First Name</label>
+        <input type="text" name="firstName_signUp" id="firstName_signUp" placeholder="First Name" class="form-control">
 
 
     </div>
@@ -22,16 +22,16 @@
 
     <div class="mb-3">
 
-        <label for="lastName" class="form-label">Enter Last Name</label>
-        <input type="text" name="lastName" id="lastName" placeholder="Last Name" class="form-control">
+        <label for="lastName_signUp" class="form-label">Enter Last Name</label>
+        <input type="text" name="lastName_signUp" id="lastName_signUp" placeholder="Last Name" class="form-control">
 
     </div>
 
 
     <div class="mb-3">
 
-        <label for="email" class="form-label">Enter Email</label>
-        <input type="email" name="email" id="email" placeholder="Email" class="form-control">
+        <label for="email_signUp" class="form-label">Enter Email</label>
+        <input type="email" name="email_signUp" id="email_signUp" placeholder="Email" class="form-control">
 
 
     </div>
@@ -39,8 +39,8 @@
 
     <div class="mb-3">
 
-        <label for="password1" class="form-label">Enter Password</label>
-        <input type="password" name="password1" id="password1" placeholder="Password" class="form-control">
+        <label for="password1_signUp" class="form-label">Enter Password</label>
+        <input type="password" name="password1_signUp" id="password1_signUp" placeholder="Password" class="form-control">
 
 
     </div>
@@ -49,8 +49,8 @@
 
     <div class="mb-3">
 
-        <label for="password2" class="form-label">Confirm password</label>
-        <input type="password" name="password2" id="password2" placeholder="Confirm Password" class="form-control">
+        <label for="password2_signUp" class="form-label">Confirm password</label>
+        <input type="password" name="password2_signUp" id="password2_signUp" placeholder="Confirm Password" class="form-control">
 
     </div>
 
@@ -64,8 +64,17 @@
     </div>
 
 
-    <button type="submit">Sign up</button>
+    <label for="confirm_inputs">Confirm Inputs</label>
+    <input type="checkbox" name="confirm_inputs" id="confirm_inputs"><br>
+
+    <button type="button" onclick="amala()">Click me!!!</button>
+
+    <button type="submit" id="sign_up_btn_submit" disabled>Sign up</button>
 
 </form>
 
+{% endblock %}
+
+{% block jsFiles %}
+    <script src="{{ url_for('static', filename = 'js/control_signup.js' ) }}"></script>
 {% endblock %}

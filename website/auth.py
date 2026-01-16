@@ -122,15 +122,15 @@ def sign_up():
             Eg, user.optional_info = some_data
         """
 
-        firstName = request.form["firstName"].strip()
+        firstName = request.form["firstName_signUp"].strip()
 
-        lastName = request.form["lastName"].strip()
+        lastName = request.form["lastName_signUp"].strip()
 
-        email = request.form["email"].strip()
+        email = request.form["email_signUp"].strip()
 
-        password1 = request.form["password1"].strip()
+        password1 = request.form["password1_signUp"].strip()
 
-        password2 = request.form["password2"].strip()
+        password2 = request.form["password2_signUp"].strip()
 
         profilePic = request.files["profilePic"]
 
