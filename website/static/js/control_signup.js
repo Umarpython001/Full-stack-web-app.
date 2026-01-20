@@ -1,11 +1,3 @@
-
-/*
-    I want to constantly check for when the user checks the checkbox.
-    When they check the check box, save the items that they have typed to local storage.
-    When ever the page is reloaded, take the items stored in local storage and place them in the input fields.
-*/
-
-
 const sign_up_btn_submit = document.getElementById("sign_up_btn_submit")
 
 const sign_up_form = document.getElementById("SignUpForm")
