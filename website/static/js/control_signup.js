@@ -6,6 +6,9 @@ const sign_up_information = document.querySelectorAll(".form-control") // This g
 
 const necessary_signup_information = Array.from(sign_up_information).slice(0, 5) //Here I get all necessary user information
 
+const password1 = document.getElementById("password1_signUp")
+
+const password2 = document.getElementById("password2_signUp")
 
 let info_useful_object = {
                     first_name: "",
@@ -25,7 +28,7 @@ function check_info(){
     const isFirstNameValid = first_name_input.value.trim().length >= 2;
     const isLastNameValid = last_name_input.value.trim().length >= 2;
     const isEmailValid = email_signup_input.value.includes(".") && email_signup_input.value.includes("@") && email_signup_input.value.length >= 5;
-
+    const isPasswordValid = password1.value.length > 7 && password1.value === password2.value
 
     let first_name = first_name_input.value
     let last_name = last_name_input.value
@@ -40,7 +43,7 @@ function check_info(){
         
 
 
-    if(isFirstNameValid && isLastNameValid && isEmailValid){
+    if(isFirstNameValid && isLastNameValid && isEmailValid && isPasswordValid){
         sign_up_btn_submit.disabled = false
     }
     else{

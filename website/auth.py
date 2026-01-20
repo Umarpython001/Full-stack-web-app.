@@ -134,6 +134,8 @@ def sign_up():
 
         profilePic = request.files["profilePic"]
 
+        print(profilePic)
+
         user = checkUserConditions(firstName, lastName, email, password1, password2)
 
 

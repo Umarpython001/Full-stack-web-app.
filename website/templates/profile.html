@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 
-
+{% block csStyles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/profile_style.css') }}">
+{% endblock %}
 
 {% block body %}
 
@@ -8,6 +10,8 @@
 
     
     <img src="{{ url_for('static', filename=current_user.profilePic) }}" alt="Profile Pic" id="profile_pic" class="card-img-top">        
+
+    <div style="background-color: black;"><br></div>
 
     <div id="profile_info" class="card-body">
 
