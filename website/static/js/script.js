@@ -1,10 +1,14 @@
-const errorAlert  = document.getElementById("errorAlert")
-const successAlert = document.getElementById("successAlert")
+const errorAlertMsg  = document.getElementById("errorAlert")
+const successAlertMsg = document.getElementById("successAlert")
 
-const errorClear = document.getElementById("errorClear")
-const successClear = document.getElementById("successClear")
+const errorClearBtn = document.getElementById("errorClear")
+const successClearBtn = document.getElementById("successClear")
 
 
-errorClear.onclick = () => errorAlert.style.display = "none"
+function errorcls(){
+    errorAlertMsg.style.display = "none"
+}
 
-successClear.onclick = () => successAlert.style.display = "none"
+function successcls(){
+    successAlertMsg.style.display = "none"
+}
