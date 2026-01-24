@@ -5,7 +5,7 @@ from .models import User, Task
 from . import db
 import uuid
 import os
-
+from werkzeug.utils import secure_filename
 
 PROFILE_PICS_SUBDIR = "profile_pics"
 
@@ -92,7 +92,7 @@ def login():
                 if check_password_hash(pwhash=user.password, password=password):
                     if login_user(user=user, remember=True):
                         flash("Logged in successfully", category="success")
-                        return redirect(f"/user/<{user.id}>/home")
+                        return redirect(f"/user/home")
                     else:
                         flash("Wrong password", category="error")
                         return redirect("/login")
@@ -139,11 +139,11 @@ def sign_up():
 
         if profilePic:
             if not checkFile(profilePic.filename): #If the picture is of an invalid format
-                flash("Profile picture is of invalid format", category='success')
+                flash("Profile picture is of invalid format", category='error')
                 return redirect(url_for("auth.sign_up"))
 
             """
-                Here we process the file given as the PFP.
+                Here, we process the file given as the PFP.
                 Get the file. 
                 Generaate a unique file naem for that file. 
                 Save it to the destination folder. 
@@ -151,11 +151,15 @@ def sign_up():
             """
             profile_pic_dir = os.path.join(current_app.config["UPLOAD_FOLDER"], PROFILE_PICS_SUBDIR)
 
-            name, ext = profilePic.filename.rsplit(".", 1) #Split the file into the name and its extension
+            uploaded_user_filename = profilePic.filename
+            secure_uploaded_filename = secure_filename(uploaded_user_filename) #This gives a secure format for the file name to avoid any issues.
+
+            name, ext = secure_uploaded_filename.rsplit(".", 1)  #Split the file into the name and its extension
 
             unique_file_name = f"{uuid.uuid4().hex}.{ext.lower()}" #Generates a unique file name for that file.
+            user.uniqueProfilePicName = unique_file_name #Stores the unique file name in the DB for reference.
 
-            unique_file_path = os.path.join(profile_pic_dir, unique_file_name) #Generates a unique file path for that picture with the uique file name
+            unique_file_path = os.path.join(profile_pic_dir, unique_file_name) #Generates a unique file path for that picture with the uique file name. It is the path that the picture will be stored in.
 
             profilePic.save(unique_file_path) #Stores the image in the destination folder with the full file path(folder name + unique name generated). It means "Save this image at this location on my device"
 
@@ -169,7 +173,7 @@ def sign_up():
 
         flash("Account created successfully", category="success")
 
-        return redirect(f"/user/<{user.id}>/home")
+        return redirect(f"/user/home")
     else:
         return render_template("sign_up.html")
 

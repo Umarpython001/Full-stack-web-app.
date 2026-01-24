@@ -24,6 +24,14 @@ class User(db.Model, UserMixin):
 
                         )
 
+    uniqueProfilePicName = db.Column(
+        
+                                        db.String(250), 
+                                        nullable=True,
+                                        default="default_image_headshot.png"
+                                        
+                                        )
+
     tasks = db.relationship("Task")
 
 

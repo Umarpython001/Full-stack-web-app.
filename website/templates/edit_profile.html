@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block csStyles %}
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/edit_profile_style.css') }}">
+
+{% endblock %}
+
+{% block form %}
+
+<form action="/user/edit_profile" method="post" enctype="multipart/form-data" id="edit_profile_form">
+  
+    <h1>Edit profile</h1><br>
+
+    <div class="input-group mb-3">
+        <span class="input-group-text">First Name</span>
+        <input type="text" class="form-control" value="{{ current_user.firstName }}" placeholder="Edit first name" name="editFirstName">
+    </div>
+
+
+
+    <div class="input-group mb-3">
+        <span class="input-group-text">Last Name</span>
+        <input type="text" class="form-control" value="{{ current_user.lastName }}" placeholder="Edit last name" name="editLastName">
+    </div>
+
+
+    <div class="input-group mb-3">
+        <span class="input-group-text">Email</span>
+        <input type="text" class="form-control" value="{{ current_user.email }}" placeholder="Edit email" name="editEmail">
+    </div>
+
+
+    <div>
+        <input type="file" id="editPFP" accept="image/*" class="form-control" name="editPFP">
+    </div>
+
+    <br>
+
+    <button type="submit" id="sign_up_btn_submit">Confirm changes</button>
+
+</form>
+
+{% endblock %}
+
+{% block jsFiles %}
+    <script src="{{ url_for('static', filename = 'js/control_signup.js' ) }}"></script>
+{% endblock %}
