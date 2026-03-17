@@ -19,7 +19,7 @@ class User(db.Model, UserMixin):
     profilePic = db.Column(
                             
                             db.String(250), 
-                            nullable=True, 
+                            nullable=False, 
                             default=f"uploads/{PROFILE_PICS_SUBDIR}/default_image_headshot.png"
 
                         )
@@ -27,7 +27,7 @@ class User(db.Model, UserMixin):
     uniqueProfilePicName = db.Column(
         
                                         db.String(250), 
-                                        nullable=True,
+                                        nullable=False,
                                         default="default_image_headshot.png"
                                         
                                         )

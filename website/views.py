@@ -37,19 +37,6 @@ def profile():
 def edit_profile():
     if request.method == "POST":
 
-        #Copliot, what can you do to help me improve this code?
-        # Certainly! Here are a few suggestions to improve the code:
-        # 1. Error Handling: Add error handling for file operations (like removing old profile pictures) to avoid crashes if the file doesn't exist. Thi sis is partially done with os.path.exists, but could be more robust. How can itbe better?
-        # 2. Input Validation: Validate the input data (like email format) before updating the user object.
-        # 3. Security: Ensure that the uploaded file is indeed an image to prevent security vulnerabilities.
-        # 4. Use `os.path.join` for constructing file paths to ensure compatibility across different operating systems.
-        # 5. Logging: Add logging for important actions like profile updates for better traceability.
-        # 6. Code Comments: Add comments to explain the purpose of each block of code for better readability.
-        # 7. Refactor: Consider refactoring the code into smaller functions for better maintainability.
-        # 8. Use Flask-WTF: Consider using Flask-WTF for form handling and validation to simplify the code.
-        # 9. Limit File Size: Implement a file size limit for uploads to prevent excessively large files from being uploaded.
-        # 10. Use Secure Filenames: Use `werkzeug.utils.secure_filename` to ensure the uploaded file names are safe.
-
         user = current_user
 
         edited_first_name = request.form["editFirstName"]
@@ -58,7 +45,7 @@ def edit_profile():
         edited_PFP = request.files["editPFP"]
 
 
-        if edited_first_name != user.firstName and len(edited_first_name) > 2:
+        if edited_first_name != user.firstName and len(edited_first_name) > 2: 
             user.firstName = edited_first_name
 
         if edited_last_name != user.lastName and len(edited_last_name) > 2:
@@ -83,8 +70,7 @@ def edit_profile():
 
             profile_pic_dir = os.path.join(current_app.config["UPLOAD_FOLDER"], PROFILE_PICS_SUBDIR)
 
-            uploaded_user_filename = edited_PFP.filename
-            secure_uploaded_filename = secure_filename(uploaded_user_filename)
+            secure_uploaded_filename = secure_filename(edited_PFP.filename)
 
             name, ext = secure_uploaded_filename.rsplit(".", 1)  #Split the file into the name and its extension
 
