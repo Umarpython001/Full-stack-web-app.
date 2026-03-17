@@ -1,18 +1,45 @@
 {% extends "base.html" %}
 
 
+{% block csStyles %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+
+{% endblock %}
+
 {% block body %}
 
-<h1>Welcome: {{ current_user.firstName }}</h1>
 
-<h1>Home Page</h1>
+<div class="feed-container">
+    
+    <header class="feed-header">
+        <div class="greeting">
+            <span>Welcome back,</span>
+            <span class="user-name">{{ current_user.firstName }}</span>
+        </div>
+        <a href="/user/create_post" class="create-post-link" title="Share a message">
+            <img src="{{ url_for('static', filename='images/plus_sign_post.png') }}" alt="Plus sign">
+            <span>Post</span>
+        </a>
+    </header>
 
+    <main class="feed">
+        <div class="post-card">
+            <div class="post-header">
+                <div class="user-avatar"></div>
+                <span class="post-author">Sample User</span>
+            </div>
+            
+            <div class="post-image-container">
+                <img src="https://via.placeholder.com/500" alt="Post content">
+            </div>
 
+            <div class="post-content">
+                <p><strong>Sample User</strong> This is what your dynamic feed will look like once we loop through your database posts!</p>
+                <span class="post-date">2 hours ago</span>
+            </div>
+        </div>
+    </main>
 
-
-<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum, numquam facilis? Dolorum magni nihil consequuntur nisi ducimus? Velit repellat repellendus esse! Quaerat debitis numquam quod mollitia excepturi voluptatem veritatis voluptas?</p>
-
-
-
-
+</div>
 {% endblock %}

@@ -1,0 +1,37 @@
+body {
+    background-color: #f0f2f5; /* Match the "Home" and "Profile" background */
+}
+
+.card {
+    border-radius: 12px;
+}
+
+.form-control {
+    background-color: #f8f9fa;
+    border: 1px solid #ced4da;
+    padding: 12px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.form-control:focus {
+    background-color: #fff;
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.1);
+}
+
+.btn-primary {
+    border-radius: 8px;
+    background-color: #0095f6;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #1877f2;
+}
+
+/* Make the profile pic label look like a button */
+label[for="editPFP"] {
+    cursor: pointer;
+    font-size: 0.85rem;
+}

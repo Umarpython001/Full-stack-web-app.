@@ -2,34 +2,48 @@
 
 
 {% block form %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-5 col-lg-4">
+            <div class="card shadow-sm border-0 login-card">
+                <div class="card-body p-5">
+                    <div class="text-center mb-4">
+                        <h2 class="fw-bold">Welcome Back</h2>
+                        <p class="text-muted">Log in to your account</p>
+                    </div>
 
-<h1 style="text-align: center;">Login Page</h1>
+                    <form action="/login" method="post">
+                        <div class="mb-3">
+                            <label for="email" class="form-label small fw-bold text-uppercase text-muted">Email Address</label>
+                            <input type="email" name="email" id="email" required class="form-control py-2">
+                        </div>
 
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between">
+                                <label for="password" class="form-label small fw-bold text-uppercase text-muted">Password</label>
+                                <a href="#" class="text-decoration-none small">Forgot?</a>
+                            </div>
+                            <input type="password" name="password" id="password" required class="form-control py-2">
+                        </div>
 
-<form action="/login" method="post">
+                        <div class="mb-4 form-check">
+                            <input type="checkbox" class="form-check-input" id="remember" name="remember">
+                            <label class="form-check-label small text-muted" for="remember">Remember me</label>
+                        </div>
 
-    <div class="mb-3">
+                        <button type="submit" class="btn btn-primary w-100 fw-bold py-2 mb-3">
+                            Log In
+                        </button>
+                    </form>
 
-        <label for="email" class="form-label">Enter Email</label>
-        <input type="email" name="email" id="email" placeholder="Email" required class="form-control"> <br>
-
+                    <div class="text-center mt-3">
+                        <span class="text-muted small">Don't have an account?</span> 
+                        <a href="{{ url_for('auth.sign_up') }}" class="text-decoration-none fw-bold small">Sign Up</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
-
-    <div class="mb-3">
-
-        <label for="password" class="form-label">Enter Password</label>
-        <input type="password" name="password" id="password" placeholder="Password" required class="form-control"><br>
-
-    </div>
-
-    
-    
-
-    <button type="submit">Login</button>
-
-</form><br>
-
-<p>Don't have an account? Sign up <a href="/sign_up">here</a>.</p>
+</div>
 
 {% endblock %}

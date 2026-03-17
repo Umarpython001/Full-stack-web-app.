@@ -1,0 +1,112 @@
+#profile_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* height: 100vh; */
+}
+
+#post_plus_sign{
+
+    height:2em;
+    align-items: center;
+
+}
+
+#post_something_text{
+    
+    background-color: aqua;
+    font-style: italic;
+
+
+}
+
+
+/* Container to center the form */
+.post-form-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+/* The Card */
+.post-card {
+    background: white;
+    width: 100%;
+    max-width: 500px;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border: 1px solid #dbdbdb;
+}
+
+.post-card h3 {
+    margin-bottom: 15px;
+    font-family: 'Arial', sans-serif;
+    color: #262626;
+}
+
+/* Hiding the ugly default file input */
+#file-input {
+    display: none;
+}
+
+/* Creating a custom clickable upload area */
+.file-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed #3897f0;
+    border-radius: 8px;
+    padding: 30px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    margin-bottom: 15px;
+}
+
+.file-label:hover {
+    background-color: #f0f8ff;
+}
+
+.file-label img {
+    width: 40px;
+    margin-bottom: 10px;
+}
+
+.file-label span {
+    color: #3897f0;
+    font-weight: bold;
+}
+
+/* Styling the Textarea */
+textarea {
+    width: 100%;
+    border: 1px solid #dbdbdb;
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 14px;
+    resize: none; /* Prevents user from stretching it weirdly */
+    margin-bottom: 15px;
+    outline: none;
+}
+
+textarea:focus {
+    border-color: #a8a8a8;
+}
+
+/* The Action Button */
+.post-btn {
+    width: 100%;
+    background-color: #0095f6;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.post-btn:hover {
+    background-color: #1877f2;
+}

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+
+{% block csStyles %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/create_post.css') }}">
+
+{% endblock %}
+
+
+{% block body %}
+
+
+<div class="post-form-container">
+
+    <form action="{{ url_for('views.create_post') }}" method="POST" enctype="multipart/form-data" class="post-card">
+        <h3>Create a Post</h3>
+        
+        <div class="file-upload-wrapper">
+
+            <input type="file" name="post_image" id="file-input" accept="image/*" required>
+
+            <label for="file-input" class="file-label">
+
+                <img src="{{ url_for('static', filename='images/plus_sign_post.png') }}" alt="Upload">
+
+                <span>Click to upload a photo</span>
+
+            </label>
+
+        </div>
+
+        <textarea name="caption" placeholder="What's on your mind?" rows="3"></textarea>
+
+        <button type="submit" class="post-btn">Share to Feed</button>
+
+    </form>
+
+</div>
+
+
+
+
+{% endblock %}

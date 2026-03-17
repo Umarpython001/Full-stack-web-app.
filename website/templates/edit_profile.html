@@ -2,46 +2,69 @@
 
 {% block csStyles %}
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/edit_profile_style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/edit_profile.css') }}">
 
 {% endblock %}
 
-{% block form %}
 
-<form action="/user/edit_profile" method="post" enctype="multipart/form-data" id="edit_profile_form">
-  
-    <h1>Edit profile</h1><br>
 
-    <div class="input-group mb-3">
-        <span class="input-group-text">First Name</span>
-        <input type="text" class="form-control" value="{{ current_user.firstName }}" placeholder="Edit first name" name="editFirstName">
+{% block body %}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-7 col-lg-6">
+            <div class="card shadow-sm border-0">
+                <div class="card-body p-5">
+                    <div class="text-center mb-4">
+                        <h2 class="fw-bold">Edit Profile</h2>
+                        <p class="text-muted">Update your personal information</p>
+                    </div>
+
+                    <form action="/user/edit_profile" method="post" enctype="multipart/form-data" id="edit_profile_form">
+                        
+                        <div class="text-center mb-4">
+                            <div class="edit-avatar-container">
+                                <img src="{{ url_for('static', filename=current_user.profilePic) }}" 
+                                     alt="Current Profile Pic" 
+                                     class="rounded-circle img-thumbnail shadow-sm mb-2" 
+                                     style="width: 120px; height: 120px; object-fit: cover;">
+                                <div class="mt-2">
+                                    <label for="editPFP" class="btn btn-sm btn-outline-primary">Change Photo</label>
+                                    <input type="file" id="editPFP" name="editPFP" accept="image/*" class="d-none">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row g-3 mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold">First Name</label>
+                                <input type="text" class="form-control" value="{{ current_user.firstName }}" name="editFirstName">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold">Last Name</label>
+                                <input type="text" class="form-control" value="{{ current_user.lastName }}" name="editLastName">
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label small fw-bold">Email Address</label>
+                            <input type="email" class="form-control" value="{{ current_user.email }}" name="editEmail">
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary fw-bold py-2">Save Changes</button>
+                            <a href="/user/profile" class="btn btn-light text-muted fw-bold">Cancel</a>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-
-
-
-    <div class="input-group mb-3">
-        <span class="input-group-text">Last Name</span>
-        <input type="text" class="form-control" value="{{ current_user.lastName }}" placeholder="Edit last name" name="editLastName">
-    </div>
-
-
-    <div class="input-group mb-3">
-        <span class="input-group-text">Email</span>
-        <input type="text" class="form-control" value="{{ current_user.email }}" placeholder="Edit email" name="editEmail">
-    </div>
-
-
-    <div>
-        <input type="file" id="editPFP" accept="image/*" class="form-control" name="editPFP">
-    </div>
-
-    <br>
-
-    <button type="submit" id="sign_up_btn_submit">Confirm changes</button>
-
-</form>
+</div>
 
 {% endblock %}
+
 
 {% block jsFiles %}
     <script src="{{ url_for('static', filename = 'js/control_signup.js' ) }}"></script>

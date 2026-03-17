@@ -8,7 +8,7 @@
         rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" 
         crossorigin="anonymous">
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/general_style_sheet.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
 
     {% block csStyles %}{% endblock %} <!-- This is what is used to link individual html pages with specific CSS files -->
 
@@ -43,6 +43,8 @@
                         <li class="nav-item">
                             <a class="nav-link active" href="/user/edit_profile">Edit Profile</a>
                         </li>
+
+    
 
                     {% else %}
                         <li class="nav-item">

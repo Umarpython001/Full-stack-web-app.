@@ -1,71 +1,78 @@
 {% extends "base.html" %}
 
+{% block csStyles %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/sign_up.css') }}">
+
+{% endblock %}
 
 {% block form %}
 
-<h1 style="text-align: center;">Sign Up Page</h1>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="card shadow-sm border-0 signup-card">
+                <div class="card-body p-5">
+                    <h2 class="text-center mb-4 fw-bold">Create Account</h2>
+                    <p class="text-muted text-center mb-4">Join our community today!</p>
 
+                    <form action="/sign_up" method="post" enctype="multipart/form-data" id="SignUpForm">
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="firstName_signUp" class="form-label">First Name</label>
+                                <input type="text" name="firstName_signUp" id="firstName_signUp" class="form-control">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="lastName_signUp" class="form-label">Last Name</label>
+                                <input type="text" name="lastName_signUp" id="lastName_signUp" class="form-control">
+                            </div>
+                        </div>
 
-<form action="/sign_up" method="post" enctype="multipart/form-data" id="SignUpForm">
+                        <div class="mb-3">
+                            <label for="email_signUp" class="form-label">Email Address</label>
+                            <input type="email" name="email_signUp" id="email_signUp" class="form-control">
+                        </div>
 
+                        <div class="mb-3">
+                            <label for="password1_signUp" class="form-label">Password</label>
+                            <input type="password" name="password1_signUp" id="password1_signUp" placeholder="••••••••" class="form-control">
+                        </div>
 
+                        <div class="mb-3">
+                            <label for="password2_signUp" class="form-label">Confirm Password</label>
+                            <input type="password" name="password2_signUp" id="password2_signUp" placeholder="••••••••" class="form-control">
+                        </div>
 
-    <div class="mb-3">
+                        <div class="mb-4">
+                            <label for="profilePic" class="form-label">Profile Picture</label>
+                            <input type="file" name="profilePic" id="profilePic" accept="image/*" class="form-control form-control-sm">
+                            <div class="form-text">Choose a photo for your profile.</div>
+                        </div>
 
-        <label for="firstName_signUp" class="form-label">Enter First Name</label>
-        <input type="text" name="firstName_signUp" id="firstName_signUp" placeholder="First Name" class="form-control">
+                        <button type="submit" id="sign_up_btn_submit" class="btn btn-primary w-100 fw-bold py-2" disabled>
+                            Sign Up
+                        </button>
+                    </form>
 
-
+                    <div class="text-center mt-4">
+                        <span class="text-muted">Already have an account?</span> 
+                        <a href="/login" class="text-decoration-none fw-bold">Log In</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
 
 
 
-    <div class="mb-3">
 
-        <label for="lastName_signUp" class="form-label">Enter Last Name</label>
-        <input type="text" name="lastName_signUp" id="lastName_signUp" placeholder="Last Name" class="form-control">
+{% endblock %}
 
-    </div>
+{% block body %}
 
 
-    <div class="mb-3">
-
-        <label for="email_signUp" class="form-label">Enter Email</label>
-        <input type="email" name="email_signUp" id="email_signUp" placeholder="Email" class="form-control">
-
-
-    </div>
-
-
-    <div class="mb-3">
-
-        <label for="password1_signUp" class="form-label">Enter Password</label>
-        <input type="password" name="password1_signUp" id="password1_signUp" placeholder="Password" class="form-control">
-
-
-    </div>
-
-
-    <div class="mb-3">
-
-        <label for="password2_signUp" class="form-label">Confirm password</label>
-        <input type="password" name="password2_signUp" id="password2_signUp" placeholder="Confirm Password" class="form-control">
-
-    </div>
-
-    
-
-    <div class="mb-3">
-
-        <label for="profilePic" class="form-label">Chose Profile Picture</label>
-        <input type="file" name="profilePic" id="profilePic" accept="image/*" class="form-control">
-
-    </div>
-
-
-    <button type="submit" id="sign_up_btn_submit" disabled>Sign up</button>
-
-</form>
 
 {% endblock %}
 
