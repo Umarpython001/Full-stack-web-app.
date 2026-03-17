@@ -1,0 +1,85 @@
+/* Container for the whole feed */
+.feed-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Header styling */
+.feed-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.greeting .user-name {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #262626;
+}
+
+.create-post-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    background: #0095f6;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    transition: transform 0.2s;
+}
+
+.create-post-link:hover { transform: scale(1.05); }
+
+.create-post-link img {
+    width: 18px;
+    margin-right: 8px;
+    filter: invert(1); /* Makes the black plus sign white */
+}
+
+/* Post Card Styling */
+.post-card {
+    background: white;
+    border: 1px solid #dbdbdb;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    overflow: hidden;
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+}
+
+.user-avatar {
+    width: 32px;
+    height: 32px;
+    background: #ddd;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.post-author { font-weight: 600; }
+
+.post-image-container img {
+    width: 100%;
+    display: block;
+}
+
+.post-content {
+    padding: 12px;
+}
+
+.post-date {
+    display: block;
+    font-size: 0.75rem;
+    color: #8e8e8e;
+    margin-top: 8px;
+    text-transform: uppercase;
+}

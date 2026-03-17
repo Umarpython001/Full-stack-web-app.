@@ -1,0 +1,36 @@
+/* Fix the profile picture size so it's always a perfect circle */
+.profile-pic-wrapper img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover; /* Prevents stretching */
+}
+
+/* Social media posts are usually perfect squares */
+.post-square {
+    position: relative;
+    width: 100%;
+    padding-top: 100%; /* Creates a 1:1 Aspect Ratio */
+    overflow: hidden;
+    background-color: #f8f9fa;
+}
+
+.post-square img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: filter 0.3s ease;
+}
+
+.post-square img:hover {
+    filter: brightness(0.8);
+    cursor: pointer;
+}
+
+/* Styling the "Posts" header */
+.tracking-widest {
+    letter-spacing: 2px;
+    color: #8e8e8e;
+}

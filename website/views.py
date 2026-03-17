@@ -92,3 +92,13 @@ def edit_profile():
         return redirect("/user/profile")
     else:
         return render_template("edit_profile.html")
+
+
+@views.route("/user/create_post", methods = ["GET", "POST"])
+@login_required
+def create_post():
+    if request.method == "GET":
+        return render_template("create_post.html")
+    else:
+        flash(message="Post uploaded successfully", category="success")
+        return redirect(f"/user/home")

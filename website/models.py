@@ -47,3 +47,7 @@ class Task(db.Model):
 
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
 
+
+# class Post(db.Model):
+#     ...
+
