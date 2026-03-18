@@ -54,35 +54,37 @@ def edit_profile():
         if edited_email != user.email and len(edited_email) > 7 and ("@" and ".") in edited_email:
             user.email = edited_email
 
-        if edited_PFP:
-            if user.uniqueProfilePicName != "default_image_headshot.png": #Even if a user uploads a file named "default_image_headshot.png", we won't delete that because we would have given it a unique name.
-                
-                old_PFP_path = os.path.join(
-                    current_app.config["UPLOAD_FOLDER"], 
-                    PROFILE_PICS_SUBDIR, 
-                    user.uniqueProfilePicName   
-                                )    
-
-                if os.path.exists(old_PFP_path): #checks if the old profile picture exists before trying to delete it            
-                    os.remove(old_PFP_path) #Removes the old profile picture from the server's local storage to save space
-                else:
-                    print("Old profile picture not found, skipping deletion.")
-
-            profile_pic_dir = os.path.join(current_app.config["UPLOAD_FOLDER"], PROFILE_PICS_SUBDIR)
-
+        if edited_PFP: #Validate the uploaded pfp before deleting the old one to avoid a situation where the user uploads an invalid file and then we delete their old profile picture, leaving them with no profile picture. We also check if the user has a custom profile picture before deleting it, because if they have the default one, we don't want to delete that since it's used by multiple users and is stored in a different location.
+            
             secure_uploaded_filename = secure_filename(edited_PFP.filename)
 
             name, ext = secure_uploaded_filename.rsplit(".", 1)  #Split the file into the name and its extension
 
             if ext.lower() in ALLOWED_EXTENSIONS:
 
-                unique_file_name = f"{uuid.uuid4().hex}.{ext.lower()}"  #Generates a unique file name for that file.    
-                user.uniqueProfilePicName = unique_file_name
-
-                unique_file_path = os.path.join(profile_pic_dir, unique_file_name)
-                edited_PFP.save(unique_file_path)
+                if user.uniqueProfilePicName != "default_image_headshot.png": #Even if a user uploads a file named "default_image_headshot.png", we won't delete that because we would have given it a unique name.
                 
-                user.profilePic = f"uploads/{PROFILE_PICS_SUBDIR}/{unique_file_name}" #Stores the relative file name in the DB. Refrences that particular image with the user. We can't use os.path.join here because in HTML, the forward slash is used as the path separator.
+                    old_PFP_path = os.path.join(
+                        current_app.config["UPLOAD_FOLDER"], 
+                        PROFILE_PICS_SUBDIR, 
+                        user.uniqueProfilePicName   
+                                    )    
+
+                    if os.path.exists(old_PFP_path): #checks if the old profile picture exists before trying to delete it            
+                        os.remove(old_PFP_path) #Removes the old profile picture from the server's local storage to save space
+                    else:
+                        print("Old profile picture not found, skipping deletion.")
+
+                    profile_pic_dir = os.path.join(current_app.config["UPLOAD_FOLDER"], PROFILE_PICS_SUBDIR)
+
+                    unique_file_name = f"{uuid.uuid4().hex}.{ext.lower()}"  #Generates a unique file name for that file.    
+                    user.uniqueProfilePicName = unique_file_name
+
+                    unique_file_path = os.path.join(profile_pic_dir, unique_file_name)
+                    edited_PFP.save(unique_file_path)
+                    
+                    user.profilePic = f"uploads/{PROFILE_PICS_SUBDIR}/{unique_file_name}" #Stores the relative file name in the DB. Refrences that particular image with the user. We can't use os.path.join here because in HTML, the forward slash is used as the path separator.
+
             else:
                 flash("Profile picture is of invalid format", category='error')
                 return redirect(url_for("views.edit_profile"))
