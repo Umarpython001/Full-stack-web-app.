@@ -30,7 +30,8 @@ def plain_route():
 @views.route("/user/profile")
 @login_required
 def profile():
-    return render_template("profile.html")
+    user_posts = Post.query.filter_by(user_id=current_user.id).order_by(Post.date_posted.desc()).all()
+    return render_template("profile.html", user=current_user, posts=user_posts) #Pass the current user and their posts to the profile template to be rendered there. We can access the user's attributes in the template using "user.attribute_name" and we can access the user's posts using "posts" since we passed that variable in as well.
     
 
 @views.route("/user/edit_profile", methods=["GET", "POST"])
@@ -96,3 +97,12 @@ def edit_profile():
     else:
         return render_template("edit_profile.html")
 
+
+
+
+
+
+# @views.route(f"/user/@{specific_user}")
+# @login_required
+# def specific_user():
+#     return render_template("specific_user.html")

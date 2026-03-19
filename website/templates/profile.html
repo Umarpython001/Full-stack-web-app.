@@ -35,7 +35,10 @@
         </div>
     </div>
 
-    <!-- <div class="row mt-4">
+
+    <div class="row mt-4">
+
+        
         <div class="col-12 text-center mb-4">
             <h5 class="text-uppercase tracking-widest border-top pt-3" style="font-size: 0.8rem; letter-spacing: 1px;">
                 <i class="bi bi-grid-3x3"></i> POSTS
@@ -43,23 +46,44 @@
         </div>
         
         <div class="row row-cols-1 row-cols-md-3 g-4">
-            <div class="col">
-                <div class="post-square">
-                    <img src="https://via.placeholder.com/400" class="img-fluid rounded" alt="User post">
+
+
+            {% for post in posts %}
+                <div class="col">
+                    <div class="post-card-wrapper h-100 shadow-sm rounded border bg-white">
+                        
+                        <div class="post-square">
+                            <img src="{{ url_for('static', filename='uploads/user_posts/' ~ post.picture) }}" 
+                                 class="img-fluid rounded-top" alt="User post">
+                        </div>
+    
+                        <div class="post-info-panel p-3">
+                            {% if post.caption %}
+                                <p class="post-caption mb-1" style="font-size: 0.9rem; color: #262626; font-weight: 500;">
+                                    {{ post.caption }}
+                                </p>
+                            {% endif %}
+                            
+                            <div class="post-meta d-flex align-items-center mt-2">
+                                <i class="bi bi-calendar3 me-2 text-muted" style="font-size: 0.75rem;"></i>
+                                <span class="post-date text-muted" style="font-size: 0.75rem;">
+                                    {{ post.date_posted.strftime('%B %d, %Y') }}
+                                </span>
+                            </div>
+                        </div>
+    
+                    </div>
                 </div>
-            </div>
-            <div class="col">
-                <div class="post-square">
-                    <img src="https://via.placeholder.com/400" class="img-fluid rounded" alt="User post">
-                </div>
-            </div>
-            <div class="col">
-                <div class="post-square">
-                    <img src="https://via.placeholder.com/400" class="img-fluid rounded" alt="User post">
-                </div>
-            </div>
+            {% endfor %}
+
+
         </div>
-    </div> -->
+
+
+    </div>
+
+
+
 </div>
 
 {% endblock %}
