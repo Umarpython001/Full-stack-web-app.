@@ -1,5 +1,6 @@
 from . import db
 from flask_login import UserMixin
+from datetime import datetime
 
 
 PROFILE_PICS_SUBDIR = "profile_pics"
@@ -33,6 +34,8 @@ class User(db.Model, UserMixin):
                                         )
 
     tasks = db.relationship("Task")
+    
+    posts = db.relationship("Post", backref='author', lazy=True)
 
 
 
@@ -48,6 +51,22 @@ class Task(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
 
 
-# class Post(db.Model):
-#     ...
+class Post(db.Model):
+    id = db.Column(db.Integer, primary_key = True)
+
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False) #ID of user that posted the post
+
+    caption = db.Column(db.String(500), nullable=True)
+
+    picture = db.Column(db.String(250), nullable=False) #A file path for where the picture is stored in the server's memory
+
+    date_posted = db.Column(
+
+                            db.DateTime, 
+                            nullable=False,
+                            default = datetime.utcnow,
+                            
+                            )
+    
+
 

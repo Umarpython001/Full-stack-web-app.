@@ -32,12 +32,14 @@ def create_app():
 
     from .views import views
     from .auth import auth
-
+    from .posts import posts
+    
     from .models import User
 
 
     app.register_blueprint(views)
     app.register_blueprint(auth)
+    app.register_blueprint(posts)
 
     login_manager = LoginManager()
     login_manager.init_app(app)

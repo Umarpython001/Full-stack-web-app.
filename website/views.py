@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, redirect, url_for, request, current_app, flash
 from flask_login import login_required, current_user
-from .models import User
+from .models import User, Post
 import os
 import uuid
 from . import db
@@ -16,7 +16,8 @@ ALLOWED_EXTENSIONS = {"png", "gif", "jpg", "jpeg", "avif", "webp"}
 @views.route("/user/home")
 @login_required
 def home():
-    return render_template("home.html")
+    all_posts = Post.query.order_by(Post.date_posted.desc()).all()
+    return render_template("home.html", posts=all_posts)
 
 
 @views.route("/")
@@ -95,12 +96,3 @@ def edit_profile():
     else:
         return render_template("edit_profile.html")
 
-
-@views.route("/user/create_post", methods = ["GET", "POST"])
-@login_required
-def create_post():
-    if request.method == "GET":
-        return render_template("create_post.html")
-    else:
-        flash(message="Post uploaded successfully", category="success")
-        return redirect(f"/user/home")
