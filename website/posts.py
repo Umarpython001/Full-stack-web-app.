@@ -62,3 +62,25 @@ def create_post():
 
         flash(message="Post uploaded successfully", category="success")
         return redirect(url_for('views.home'))
+
+
+@posts.route(f"/user/@<firstName>")
+@login_required
+def specific_user(firstName):
+
+    specific_user = User.query.filter_by(firstName=firstName).first_or_404()
+
+    user_posts = Post.query.filter_by(user_id=specific_user.id).order_by(Post.date_posted.desc()).all()
+
+    return render_template("specific_user.html", specific_user = specific_user, posts = user_posts)
+
+
+
+@posts.route(f"/dm/@<recepient_id>")
+@login_required
+def send_dm(recepient_id):
+
+    recepient = User.query.filter_by(id=recepient_id).first_or_404()
+
+    return f"You are DMimg {recepient.firstName} {recepient.lastName}"
+

@@ -100,9 +100,3 @@ def edit_profile():
 
 
 
-
-
-# @views.route(f"/user/@{specific_user}")
-# @login_required
-# def specific_user():
-#     return render_template("specific_user.html")

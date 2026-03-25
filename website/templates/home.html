@@ -30,7 +30,7 @@
                 <div class="post-card">
                     <div class="post-header">
 
-                        <a href="">
+                        <a href="{{ url_for('posts.specific_user', firstName=post.author.firstName) }}">
 
                             <div class="user-avatar"> 
                                 <img src="{{ url_for('static', filename='uploads/profile_pics/' ~ post.author.uniqueProfilePicName) }}" alt="">    

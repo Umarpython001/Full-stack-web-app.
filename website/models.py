@@ -68,5 +68,6 @@ class Post(db.Model):
                             
                             )
     
-
+    def __repr__(self):
+        return f"Id: {self.id}\n user_id: {self.user_id}"
 
