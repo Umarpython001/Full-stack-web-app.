@@ -21,7 +21,7 @@ class User(db.Model, UserMixin):
                             
                             db.String(250), 
                             nullable=False, 
-                            default=f"uploads/{PROFILE_PICS_SUBDIR}/default_image_headshot.png"
+                            default=f"images/default_image_headshot.png"
 
                         )
 
@@ -37,6 +37,21 @@ class User(db.Model, UserMixin):
     
     posts = db.relationship("Post", backref='author', lazy=True)
 
+
+    sent_messages = db.relationship(
+        'Message', 
+        foreign_keys='Message.senderID', 
+        backref='sender', 
+        lazy=True
+    )
+
+
+    received_messages = db.relationship(
+        'Message', 
+        foreign_keys='Message.recepientID', 
+        backref='recipient', 
+        lazy=True
+    )
 
 
 
@@ -71,3 +86,29 @@ class Post(db.Model):
     def __repr__(self):
         return f"Id: {self.id}\n user_id: {self.user_id}"
 
+
+
+
+class Message(db.Model):
+
+    id = db.Column(db.Integer, primary_key = True)
+
+    senderID = db.Column(
+                            db.Integer, 
+                            db.ForeignKey("user.id"), 
+                            nullable=False
+                            )
+
+    recepientID = db.Column(
+                            db.Integer, 
+                            db.ForeignKey("user.id"), 
+                            nullable=False
+                            )
+
+    content = db.Column(db.Text, nullable=False)
+
+    timeStamp = db.Column(
+                            db.DateTime, 
+                            nullable=False,
+                            default = datetime.utcnow,
+                            )

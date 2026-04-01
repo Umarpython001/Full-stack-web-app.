@@ -77,15 +77,15 @@ def edit_profile():
                     else:
                         print("Old profile picture not found, skipping deletion.")
 
-                    profile_pic_dir = os.path.join(current_app.config["UPLOAD_FOLDER"], PROFILE_PICS_SUBDIR)
+                profile_pic_dir = os.path.join(current_app.config["UPLOAD_FOLDER"], PROFILE_PICS_SUBDIR)
 
-                    unique_file_name = f"{uuid.uuid4().hex}.{ext.lower()}"  #Generates a unique file name for that file.    
-                    user.uniqueProfilePicName = unique_file_name
+                unique_file_name = f"{uuid.uuid4().hex}.{ext.lower()}"  #Generates a unique file name for that file.    
+                user.uniqueProfilePicName = unique_file_name
 
-                    unique_file_path = os.path.join(profile_pic_dir, unique_file_name)
-                    edited_PFP.save(unique_file_path)
+                unique_file_path = os.path.join(profile_pic_dir, unique_file_name)
+                edited_PFP.save(unique_file_path)
                     
-                    user.profilePic = f"uploads/{PROFILE_PICS_SUBDIR}/{unique_file_name}" #Stores the relative file name in the DB. Refrences that particular image with the user. We can't use os.path.join here because in HTML, the forward slash is used as the path separator.
+                user.profilePic = f"uploads/{PROFILE_PICS_SUBDIR}/{unique_file_name}" #Stores the relative file name in the DB. Refrences that particular image with the user. We can't use os.path.join here because in HTML, the forward slash is used as the path separator.
 
             else:
                 flash("Profile picture is of invalid format", category='error')
