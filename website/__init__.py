@@ -2,7 +2,7 @@ from flask import Flask, url_for
 from flask_sqlalchemy import SQLAlchemy
 import os
 from flask_login import LoginManager, current_user
-
+from flask_socketio import SocketIO, emit, join_room, leave_room
 
 
 def create_db(app):
@@ -12,7 +12,7 @@ def create_db(app):
 
 
 db = SQLAlchemy()
-
+socketio = SocketIO()
 
 
 
@@ -33,6 +33,7 @@ def create_app():
     from .views import views
     from .auth import auth
     from .posts import posts
+    from .dm import dm
     
     from .models import User
 
@@ -40,6 +41,9 @@ def create_app():
     app.register_blueprint(views)
     app.register_blueprint(auth)
     app.register_blueprint(posts)
+    app.register_blueprint(dm)
+
+
 
     login_manager = LoginManager()
     login_manager.init_app(app)

@@ -41,7 +41,7 @@
 
                 {% else %}
 
-                    <a href="{{ url_for('posts.send_dm', recepient_id=specific_user.id) }}" class="btn btn-outline-secondary btn-sm fw-bold">Message</a>
+                    <a href="{{ url_for('dm.send_dm', recepient_id=specific_user.id) }}" class="btn btn-outline-secondary btn-sm fw-bold">Message</a>
 
 
                 {% endif %}

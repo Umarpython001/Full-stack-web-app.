@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block title %}Chat with {{ recepient.firstName }}{% endblock %}
+
+{% block csStyles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dm.css') }}">
+{% endblock %}
+
+{% block jsFiles %}
+
+
+    <script>
+
+        let roomID = "{{  room_id  }}" //The room ID
+        let current_user = "{{ current_user.id }}" //The current user's ID (sender)
+        let recepient = "{{ recepient.id }}" //The recepient's ID (receiver)
+
+        
+    </script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>   
+    <script src = "{{url_for('static', filename = 'js/dm.js')}}"></script>
+    
+
+{% endblock %}
+
+
+{% block body %}
+<div class="chat-container">
+    <header class="chat-header">
+        <div class="user-info">
+            <img src="{{ url_for('static', filename='uploads/profile_pics/' ~ recepient.uniqueProfilePicName) }}"" alt="Profile" class="avatar">
+            <div>
+                <h2>{{ recepient.firstName }} {{ recepient.lastName }}</h2>
+                <span class="status-indicator online">Online</span>
+            </div>
+        </div>
+        <div class="header-actions">
+            <i class="ph ph-phone"></i>
+            <i class="ph ph-dots-three-vertical"></i>
+        </div>
+    </header>
+
+    <main class="message-feed" id="messageFeed">
+        {% for message in messages %}
+            <div class="message-wrapper {{ 'sent' if message.senderID == current_user.id else 'received' }}">
+                <div class="message-bubble">
+                    <p>{{ message.content }}</p>
+                    <span class="timestamp">{{ message.timeStamp.strftime('%H:%M') }}</span>
+                </div>
+            </div>
+        {% else %}
+            <div class="empty-state">
+                <p>No messages yet. Say hello!</p>
+            </div>
+        {% endfor %}
+    </main>
+
+    <footer class="chat-input-area">
+
+        <form id="chatForm" action="{{ url_for('dm.send_dm', recepient_id=recepient.id) }}" method="POST">
+
+            <button type="button" class="icon-btn"><i class="ph ph-plus"></i></button>
+
+            <input type="text" name="message" placeholder="Type a message..." required autocomplete="off" id="msg_content">
+
+            <button type="button" name="submit_msg" id="send-btn" onclick="sendMesssage()">
+
+                <i class="ph ph-paper-plane-right"></i>
+
+            </button>
+
+        </form>
+    </footer>
+</div>
+{% endblock %}
+

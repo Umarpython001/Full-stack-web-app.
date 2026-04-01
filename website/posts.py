@@ -7,6 +7,10 @@ import uuid
 import os
 from werkzeug.utils import secure_filename
 import time
+import random
+import string
+import datetime
+
 
 posts = Blueprint("posts", __name__)
 
@@ -73,14 +77,3 @@ def specific_user(firstName):
     user_posts = Post.query.filter_by(user_id=specific_user.id).order_by(Post.date_posted.desc()).all()
 
     return render_template("specific_user.html", specific_user = specific_user, posts = user_posts)
-
-
-
-@posts.route(f"/dm/@<recepient_id>")
-@login_required
-def send_dm(recepient_id):
-
-    recepient = User.query.filter_by(id=recepient_id).first_or_404()
-
-    return f"You are DMimg {recepient.firstName} {recepient.lastName}"
-
