@@ -1,6 +1,15 @@
-#Ignore the instance folder where the database is
-instance
-#ignore all uploads
-website/static/uploads/
-#ignore .pyc files in __pycache__ folder
-website/__pycache__/
+# Ignore the instance folder where the database is
+instance/
+
+# Ignore contents of profile_pics but keep the folder
+website/static/uploads/profile_pics/*
+!website/static/uploads/profile_pics/.gitkeep
+
+# Ignore contents of user_posts but keep the folder
+website/static/uploads/user_posts/*
+!website/static/uploads/user_posts/.gitkeep
+
+# Ignore .pyc files and folders
+**/__pycache__/
+.venv/
+.DS_Store
