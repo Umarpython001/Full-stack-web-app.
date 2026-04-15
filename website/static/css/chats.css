@@ -1,0 +1,79 @@
+/* Container Layout */
+.chats-container {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.page-title {
+    margin-bottom: 1.5rem;
+    color: #333;
+    font-weight: 700;
+}
+
+/* Remove default link styling */
+.chat-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* The Card Style */
+.chat-card {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    background: #fff;
+    border-radius: 12px;
+    transition: all 0.2s ease-in-out;
+    border: 1px solid #eee;
+}
+
+/* Hover Effect */
+.chat-card:hover {
+    background-color: #f8f9fa;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Avatar Styling */
+.chat-avatar {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 15px;
+    border: 2px solid #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Text details */
+.chat-details {
+    flex-grow: 1;
+}
+
+.chat-header h4 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #222;
+}
+
+.chat-preview {
+    margin: 4px 0 0;
+    font-size: 0.9rem;
+    color: #777;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 3rem;
+    color: #888;
+    background: #fdfdfd;
+    border: 2px dashed #ddd;
+    border-radius: 12px;
+}

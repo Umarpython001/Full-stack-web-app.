@@ -7,7 +7,6 @@ from .models import User, Task, Post, Message
 import os
 import uuid
 from . import db, socketio
-from werkzeug.utils import secure_filename
 import datetime
 from sqlalchemy import or_
 

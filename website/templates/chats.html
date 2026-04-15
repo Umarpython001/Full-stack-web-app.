@@ -1,2 +1,60 @@
-{%extends 'base.html'%}
+{% extends 'base.html' %}
 
+{% block title %}Messages{% endblock %}
+
+{% block csStyles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/chats.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="chats-container">
+
+    <h2 class="page-title">Recent Chats</h2>
+    
+    <div class="recent-chats-list">
+
+        {% for partner in current_user.chat_partners %}
+
+            <a href="{{ url_for('dm.send_dm', recepient_id=partner.id) }}" class="chat-link">
+
+                <div class="chat-card">
+
+                    <div class="avatar-container">
+
+                        <img src="{{ url_for('static', filename='uploads/profile_pics/' ~ partner.uniqueProfilePicName) }}" 
+
+                             alt="{{ partner.firstName }}" class="chat-avatar">
+
+                    </div>
+
+                    <div class="chat-details">
+
+                        <div class="chat-header">
+
+                            <h4>{{ partner.firstName }}</h4>
+
+                            </div>
+
+                        <p class="chat-preview">Click to open conversation</p>
+
+                    </div>
+
+                </div>
+
+            </a>
+
+        {% else %}
+
+            <div class="empty-state">
+
+                <p>No messages yet. Start a conversation!</p>
+
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock %}
