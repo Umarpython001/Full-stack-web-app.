@@ -22,7 +22,7 @@ def send_dm(recepient_id):
 
     recepient = User.query.filter_by(id=recepient_id).first_or_404()
 
-    session["recepient_id"] = recepient_id
+    session["recepient_id"] = recepient_id #We store the recepient_id in the session so that we can access it in the socketio event handlers. This way, when a message is sent, we can know who the recepient of the message is and we can save the message to the database with the correct sender and recepient ids.
 
     sender = current_user
 
