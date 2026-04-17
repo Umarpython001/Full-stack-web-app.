@@ -15,7 +15,7 @@
 
         {% for partner in current_user.chat_partners %}
 
-            <a href="{{ url_for('dm.send_dm', recepient_id=partner.id) }}" class="chat-link">
+            <a href="{{ url_for('dm.send_dm', userName=partner.userName) }}" class="chat-link">
 
                 <div class="chat-card">
 
@@ -23,7 +23,7 @@
 
                         <img src="{{ url_for('static', filename='uploads/profile_pics/' ~ partner.uniqueProfilePicName) }}" 
 
-                             alt="{{ partner.firstName }}" class="chat-avatar">
+                             alt="{{ partner.userName }}" class="chat-avatar">
 
                     </div>
 
@@ -31,7 +31,7 @@
 
                         <div class="chat-header">
 
-                            <h4>{{ partner.firstName }}</h4>
+                            <h4>{{ partner.userName }}</h4>
 
                             </div>
 

@@ -33,7 +33,7 @@
         <div class="user-info">
             <img src="{{ url_for('static', filename='uploads/profile_pics/' ~ recepient.uniqueProfilePicName) }}" alt="Profile" class="avatar">
             <div>
-                <h2>{{ recepient.firstName }} {{ recepient.lastName }}</h2>
+                <h2>{{ recepient.userName }}</h2>
                 <span class="status-indicator online">Online</span>
             </div>
         </div>
@@ -60,7 +60,7 @@
 
     <footer class="chat-input-area">
 
-        <form id="chatForm" action="{{ url_for('dm.send_dm', recepient_id=recepient.id) }}" method="POST">
+        <form id="chatForm">
 
             <button type="button" class="icon-btn"><i class="ph ph-plus"></i></button>
 
