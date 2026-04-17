@@ -15,7 +15,7 @@
     <header class="feed-header">
         <div class="greeting">
             <span>Welcome back,</span>
-            <span class="user-name">{{ current_user.firstName }}</span>
+            <span class="user-name">{{ current_user.userName }}</span>
         </div>
         <a href="{{ url_for('posts.create_post') }}" class="create-post-link" title="Share a message">
             <img src="{{ url_for('static', filename='images/plus_sign_post.png') }}" alt="Plus sign">
@@ -30,12 +30,12 @@
                 <div class="post-card">
                     <div class="post-header">
 
-                        <a href="{{ url_for('posts.specific_user', firstName=post.author.firstName) }}">
+                        <a href="{{ url_for('posts.specific_user', userName=post.author.userName) }}">
 
                             <div class="user-avatar"> 
                                 <img src="{{ url_for('static', filename='uploads/profile_pics/' ~ post.author.uniqueProfilePicName) }}" alt="">    
                             </div>
-                            <span class="post-author"> {{ post.author.firstName }} </span>
+                            <span class="post-author"> {{ post.author.userName }} </span>
                                                         
                         </a>
 
@@ -49,7 +49,7 @@
 
                         {% if post.caption %}
 
-                            <p><strong>{{ post.author.firstName }}</strong> {{ post.caption }} </p>
+                            <p><strong> {{ post.caption }} </strong></p>
                         
                         {% endif %}
                         
