@@ -68,11 +68,11 @@ def create_post():
         return redirect(url_for('views.home'))
 
 
-@posts.route(f"/user/@<firstName>")
+@posts.route(f"/user/@<userName>", methods=["GET"])
 @login_required
-def specific_user(firstName):
+def specific_user(userName):
 
-    specific_user = User.query.filter_by(firstName=firstName).first_or_404()
+    specific_user = User.query.filter_by(userName=userName).first_or_404()
 
     user_posts = Post.query.filter_by(user_id=specific_user.id).order_by(Post.date_posted.desc()).all()
 
