@@ -19,7 +19,7 @@
         <div class="col-md-8">
             <div class="d-flex align-items-center mb-3 flex-wrap">
 
-                <h2 class="me-4 mb-0 fw-light">{{ specific_user.firstName }} {{ specific_user.lastName }}</h2>
+                <h2 class="me-4 mb-0 fw-light"> <strong> {{ specific_user.userName }} </strong></h2>
 
             <div class="d-flex mb-3">
 
@@ -32,8 +32,10 @@
             </div>
 
             <div class="specific_user-bio">
+
+                <h6 class="text-muted">{{ specific_user.firstName }} {{ specific_user.lastName }}</h6>
+
                 <p class="text-muted">Contact: <a href="mailto:{{ specific_user.email }}" class="text-decoration-none text-info">{{ specific_user.email }}</a></p>
-            
                 {% if specific_user.id == current_user.id %}
 
                     <a href="{{ url_for('views.edit_profile') }}" class="btn btn-outline-secondary btn-sm fw-bold">Edit Profile</a>
@@ -41,7 +43,7 @@
 
                 {% else %}
 
-                    <a href="{{ url_for('dm.send_dm', recepient_id=specific_user.id) }}" class="btn btn-outline-secondary btn-sm fw-bold">Message</a>
+                    <a href="{{ url_for('dm.send_dm', userName=specific_user.userName) }}" class="btn btn-outline-secondary btn-sm fw-bold">Message</a>
 
 
                 {% endif %}
