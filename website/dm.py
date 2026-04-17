@@ -16,13 +16,13 @@ dm = Blueprint("dm", __name__)
 rooms = {} #This is a dictionary that will store the room codes and the users in those rooms. The keys will be the room codes and the values will be lists of user ids. We can use this to keep track of which users are in which rooms and to send messages to the correct users when a message is sent in a room. 
 
 
-@dm.route("/dm/@<int:recepient_id>", methods=["GET", "POST"])
+@dm.route("/dm/@<userName>", methods=["GET", "POST"])
 @login_required
-def send_dm(recepient_id):
+def send_dm(userName):
 
-    recepient = User.query.filter_by(id=recepient_id).first_or_404()
+    recepient = User.query.filter_by(userName=userName).first_or_404()
 
-    session["recepient_id"] = recepient_id #We store the recepient_id in the session so that we can access it in the socketio event handlers. This way, when a message is sent, we can know who the recepient of the message is and we can save the message to the database with the correct sender and recepient ids.
+    session["recepient_id"] = recepient.id #We store the recepient_id in the session so that we can access it in the socketio event handlers. This way, when a message is sent, we can know who the recepient of the message is and we can save the message to the database with the correct sender and recepient ids.
 
     sender = current_user
 
@@ -38,8 +38,8 @@ def send_dm(recepient_id):
 
     messages = Message.query.filter(
                                         or_(
-                                                (Message.senderID == current_user.id) & (Message.recepientID == recepient_id),
-                                                (Message.senderID == recepient_id) & (Message.recepientID == current_user.id)
+                                                (Message.senderID == current_user.id) & (Message.recepientID == recepient.id),
+                                                (Message.senderID == recepient.id) & (Message.recepientID == current_user.id)
                                             )
                                     ).order_by(Message.timeStamp.asc()).all()
 
@@ -56,9 +56,9 @@ def connect(data):
         join_room(room_id)
         session["room_id"] = room_id
 
-        print(f"\n'{current_user.firstName}' has joined '{room_id}'\n")
+        print(f"\n'{current_user.userName}' has joined '{room_id}'\n")
 
-        send(f"'{current_user.firstName}' has entered the room.", to=room_id)   
+        send(f"'{current_user.userName}' has entered the room.", to=room_id)   
 
 
     else:
@@ -70,7 +70,7 @@ def disconnect():
 
     room_id = session.get("room_id")
 
-    print(f"\n'{current_user.firstName}' has left room '{room_id}'.\n")
+    print(f"\n'{current_user.userName}' has left room '{room_id}'.\n")
 
 
 @socketio.on("send_message")
@@ -90,9 +90,9 @@ def send_message(data):
         "timestamp": datetime.datetime.now().strftime('%H:%M') 
     }
 
-    print(f"\nReceived message from '{current_user.firstName}' in '{room_id}': '{msg_content}'\n")
+    print(f"\nReceived message from '{current_user.userName}' in '{room_id}': '{msg_content}'\n")
 
-    print(f"User {current_user.firstName} is {'authenticated' if current_user.is_authenticated else 'not authenticated'}.\n")
+    print(f"User {current_user.userName} is {'authenticated' if current_user.is_authenticated else 'not authenticated'}.\n")
 
     emit("receive_message", reply_data, to=room_id)
 
