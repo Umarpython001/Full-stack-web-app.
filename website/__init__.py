@@ -9,6 +9,20 @@ def create_db(app):
     if not os.path.exists(f"website\database.db"):
         with app.app_context():
             db.create_all()
+            from .models import User
+
+            old = User.query.filter_by(userName="qwen3-vl:4b").first()
+
+            if not old:
+                qwen = User(
+                            userName="qwen3-vl:4b", 
+                            profilePic = "images/qwen_profile_pic.jpg",
+                            uniqueProfilePicName = "qwen_profile_pic.jpg",
+                        )
+                db.session.add(qwen)
+                db.session.commit()
+
+
 
 
 db = SQLAlchemy()
