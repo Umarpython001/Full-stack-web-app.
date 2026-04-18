@@ -69,7 +69,7 @@ class User(db.Model, UserMixin):
     )
 
     def __repr__(self):
-        return f"Name: {self.firstName}"
+        return f"Name: {self.userName}"
 
 
 class Task(db.Model):
