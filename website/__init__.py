@@ -48,6 +48,7 @@ def create_app():
     from .auth import auth
     from .posts import posts
     from .dm import dm
+    from .dm_ai import dm_ai
     
     from .models import User
 
@@ -56,6 +57,7 @@ def create_app():
     app.register_blueprint(auth)
     app.register_blueprint(posts)
     app.register_blueprint(dm)
+    app.register_blueprint(dm_ai)
 
 
 
