@@ -18,6 +18,7 @@ def create_db(app):
                             userName="qwen3-vl:4b", 
                             profilePic = "images/qwen_profile_pic.jpg",
                             uniqueProfilePicName = "qwen_profile_pic.jpg",
+                            is_ai = True
                         )
                 db.session.add(qwen)
                 db.session.commit()
