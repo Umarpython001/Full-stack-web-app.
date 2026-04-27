@@ -13,7 +13,7 @@
 
         let roomID = "{{  room_id  }}" //The room ID
         let current_user = "{{ current_user.id }}" //The current user's ID (sender)
-        let recepient = "{{ recepient.id }}" //The recepient's ID (receiver)
+        let recepient_id = "{{ recepient.id }}" //The recepient's ID (receiver)
 
         
     </script>
@@ -66,7 +66,7 @@
 
             <input type="text" name="message" placeholder="Type a message..." required autocomplete="off" id="msg_content">
 
-            <button type="button" name="submit_msg" id="send-btn" onclick="sendMesssage()">
+            <button type="button" name="submit_msg" id="send-btn">
 
                 <i class="ph ph-paper-plane-right"></i>
 
