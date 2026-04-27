@@ -34,6 +34,8 @@ class User(db.Model, UserMixin):
                                         default="default_image_headshot.png"
                                         
                                         )
+    
+    is_ai = db.Column(db.Boolean, default=False) 
 
     @property
     def chat_partners(self):
