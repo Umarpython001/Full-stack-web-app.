@@ -27,14 +27,19 @@ def checkFile(name: str) -> bool: #This checks the file name to ensure that it i
         return False
     return False
 
-def checkUserConditions(firstName, lastName, email, password1, password2): #This collects all the user's primary info and checks if it's correct. It then creates a user model if it is.
+def checkUserConditions(firstName, lastName, email, unique_user_name, password1, password2): #This collects all the user's primary info and checks if it's correct. It then creates a user model if it is.
     
-    user = User.query.filter_by(email = email).first()
+    user_by_email = User.query.filter_by(email = email).first()
+    user_by_username = User.query.filter_by(userName = unique_user_name).first()
  
-    if user:
+    if user_by_email:
         flash("Email already exists", category="error")
         return redirect(url_for("auth.sign_up"))
-            
+
+    if user_by_username:
+        flash("Username already exists", category="error")
+        return redirect(url_for("auth.sign_up"))
+
     if len(firstName) < 2:
         flash("First name must be at least 2 characters", category='error')
         return redirect(url_for("auth.sign_up"))
@@ -56,6 +61,7 @@ def checkUserConditions(firstName, lastName, email, password1, password2): #This
         return redirect(url_for("auth.sign_up"))
 
     user = User(email = email, 
+                userName = unique_user_name,
                 firstName = firstName, 
                 lastName=lastName, 
                 password = generate_password_hash(password1),
@@ -128,13 +134,15 @@ def sign_up():
 
         email = request.form["email_signUp"].strip()
 
+        unique_user_name = request.form["unique_user_name"].strip()
+
         password1 = request.form["password1_signUp"].strip()
 
         password2 = request.form["password2_signUp"].strip()
 
         profilePic = request.files["profilePic"]
 
-        user = checkUserConditions(firstName, lastName, email, password1, password2)
+        user = checkUserConditions(firstName, lastName, email, unique_user_name, password1, password2)
 
 
         if profilePic:

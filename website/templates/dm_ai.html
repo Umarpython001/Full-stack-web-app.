@@ -1,27 +1,21 @@
 {% extends 'base.html' %}
 
-{% block title %}Chat with {{ recepient.firstName }}{% endblock %}
-
 {% block csStyles %}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/dm.css') }}">
 {% endblock %}
 
 {% block jsFiles %}
 
-
     <script>
 
-        let roomID = "{{  room_id  }}" //The room ID
-        let current_user = "{{ current_user.id }}" //The current user's ID (sender)
-        let recepient_id = "{{ recepient.id }}" //The recepient's ID (receiver)
+        let modelName = "{{ model.userName }}"
+        let modelID = "{{ model.id }}"
 
-        
     </script>
-
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/@phosphor-icons/web"></script>   
-    <script src = "{{url_for('static', filename = 'js/dm.js')}}"></script>
+    <script src = "{{url_for('static', filename = 'js/dm_ai.js')}}"></script>
     
 
 {% endblock %}
@@ -31,9 +25,9 @@
 <div class="chat-container">
     <header class="chat-header">
         <div class="user-info">
-            <img src="{{ url_for('static', filename='uploads/profile_pics/' ~ recepient.uniqueProfilePicName) }}" alt="Profile" class="avatar">
+            <img src="{{ url_for('static', filename='images/' ~ model.uniqueProfilePicName) }}" alt="Profile" class="avatar">
             <div>
-                <h2>{{ recepient.userName }}</h2>
+                <h2>{{ model.firstName }}</h2>
                 <span class="status-indicator online">Online</span>
             </div>
         </div>

@@ -99,4 +99,9 @@ def edit_profile():
 
 
 
+@views.route("/user/chats", methods=["GET", "POST"])
+@login_required
+def view_dms():
 
+
+    return render_template("chats.html")

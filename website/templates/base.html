@@ -29,19 +29,23 @@
                     {% if current_user.is_authenticated %}
 
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/user/home">Home</a>
+                            <a class="nav-link active" aria-current="page" href="{{ url_for('views.home') }}">Home</a>
                         </li>
                         
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/user/profile">Profile</a>
+                            <a class="nav-link active" aria-current="page" href="{{ url_for('views.profile') }}">Profile</a>
                         </li>
                         
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/logout">Logout</a>
+                            <a class="nav-link active" aria-current="page" href="{{ url_for('auth.logout') }}">Logout</a>
                         </li> 
 
                         <li class="nav-item">
-                            <a class="nav-link active" href="/user/edit_profile">Edit Profile</a>
+                            <a class="nav-link active" href="{{ url_for('views.edit_profile') }}">Edit Profile</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{{ url_for('views.view_dms') }}">DMs</a>
                         </li>
 
     
