@@ -30,13 +30,18 @@
 {% block body %}
 <div class="chat-container">
     <header class="chat-header">
-        <div class="user-info">
-            <img src="{{ url_for('static', filename='uploads/profile_pics/' ~ recepient.uniqueProfilePicName) }}" alt="Profile" class="avatar">
-            <div>
-                <h2>{{ recepient.userName }}</h2>
-                <span class="status-indicator online">Online</span>
+        <a href="{{url_for('posts.specific_user', userName = recepient.userName)}}" id="user-link">
+
+            <div class="user-info">
+                <img src="{{ url_for('static', filename='uploads/profile_pics/' ~ recepient.uniqueProfilePicName) }}" alt="Profile" class="avatar">
+                <div>
+                    <h2>{{ recepient.userName }}</h2>
+                    <span class="status-indicator online">Online</span>
+                </div>
             </div>
-        </div>
+
+        </a>
+        
         <div class="header-actions">
             <i class="ph ph-phone"></i>
             <i class="ph ph-dots-three-vertical"></i>
