@@ -3,6 +3,8 @@ from flask_sqlalchemy import SQLAlchemy
 import os
 from flask_login import LoginManager, current_user
 from flask_socketio import SocketIO, emit, join_room, leave_room
+from dotenv import load_dotenv
+
 
 
 def create_db(app):
@@ -36,12 +38,13 @@ def create_app():
 
     app = Flask(__name__)
 
+    load_dotenv()
 
-    app.config["SECRET_KEY"] = "We ArE UnItY"
-    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///database.db"
+
+    app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
+    app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL")
     app.config["UPLOAD_FOLDER"] = os.path.join(app.root_path, "static", "uploads")
 
-    
 
     db.init_app(app)
 
