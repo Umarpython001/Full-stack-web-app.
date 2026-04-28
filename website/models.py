@@ -15,12 +15,14 @@ class User(db.Model, UserMixin):
 
     lastName = db.Column(db.String(150))
 
+    userName = db.Column(db.String(150), unique=True)
+
     password = db.Column(db.String(250))
 
     profilePic = db.Column(
                             
                             db.String(250), 
-                            nullable=False, 
+                            nullable=False,
                             default=f"images/default_image_headshot.png"
 
                         )
@@ -32,6 +34,21 @@ class User(db.Model, UserMixin):
                                         default="default_image_headshot.png"
                                         
                                         )
+    
+    is_ai = db.Column(db.Boolean, default=False) 
+
+    @property
+    def chat_partners(self):
+        from website.models import Message, User
+        
+        # Get IDs of everyone interacted with
+        sent_to = Message.query.filter_by(senderID=self.id).with_entities(Message.recepientID).distinct().all()
+        received_from = Message.query.filter_by(recepientID=self.id).with_entities(Message.senderID).distinct().all()
+        
+        chat_ids = {uid[0] for uid in sent_to} | {uid[0] for uid in received_from}
+        
+        # Fetch the actual User objects for those IDs
+        return User.query.filter(User.id.in_(chat_ids)).all()
 
     tasks = db.relationship("Task")
     
@@ -53,6 +70,8 @@ class User(db.Model, UserMixin):
         lazy=True
     )
 
+    def __repr__(self):
+        return f"Name: {self.userName} ID:{self.id}"
 
 
 class Task(db.Model):

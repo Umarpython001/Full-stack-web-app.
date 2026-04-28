@@ -9,6 +9,21 @@ def create_db(app):
     if not os.path.exists(f"website\database.db"):
         with app.app_context():
             db.create_all()
+            from .models import User
+
+            old = User.query.filter_by(userName="qwen3-vl:4b").first()
+
+            if not old:
+                qwen = User(
+                            userName="qwen3-vl:4b", 
+                            profilePic = "images/qwen_profile_pic.jpg",
+                            uniqueProfilePicName = "qwen_profile_pic.jpg",
+                            is_ai = True
+                        )
+                db.session.add(qwen)
+                db.session.commit()
+
+
 
 
 db = SQLAlchemy()
@@ -34,6 +49,7 @@ def create_app():
     from .auth import auth
     from .posts import posts
     from .dm import dm
+    from .dm_ai import dm_ai
     
     from .models import User
 
@@ -42,6 +58,7 @@ def create_app():
     app.register_blueprint(auth)
     app.register_blueprint(posts)
     app.register_blueprint(dm)
+    app.register_blueprint(dm_ai)
 
 
 

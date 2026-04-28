@@ -1,0 +1,162 @@
+/* Container Layout */
+.chats-container {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.page-title {
+    margin-bottom: 1.5rem;
+    color: #333;
+    font-weight: 700;
+}
+
+/* Remove default link styling */
+.chat-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* The Card Style */
+.chat-card {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    background: #fff;
+    border-radius: 12px;
+    transition: all 0.2s ease-in-out;
+    border: 1px solid #eee;
+}
+
+/* Hover Effect */
+.chat-card:hover {
+    background-color: #f8f9fa;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Avatar Styling */
+.chat-avatar {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 15px;
+    border: 2px solid #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Text details */
+.chat-details {
+    flex-grow: 1;
+}
+
+.chat-header h4 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #222;
+}
+
+.chat-preview {
+    margin: 4px 0 0;
+    font-size: 0.9rem;
+    color: #777;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 3rem;
+    color: #888;
+    background: #fdfdfd;
+    border: 2px dashed #ddd;
+    border-radius: 12px;
+}
+
+
+/* AI Section Container */
+.suggest-ai {
+    margin-top: 3rem;
+    padding: 1.5rem;
+    background: #f0f4ff; /* Light blue tint */
+    border-radius: 20px;
+    border: 1px solid #dce4f7;
+}
+
+.ai-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.ai-header h3 {
+    margin: 0;
+    color: #4361ee; /* Branding color */
+    font-size: 1.4rem;
+}
+
+.ai-header p {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* The Grid */
+.ai-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 12px;
+}
+
+/* AI Option Cards */
+.ai-card {
+    text-decoration: none;
+    background: #fff;
+    padding: 15px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.ai-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(67, 97, 238, 0.1);
+    border-color: #4361ee;
+}
+
+.ai-icon {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.ai-info h4 {
+    margin: 0;
+    font-size: 1rem;
+    color: #333;
+}
+
+.ai-info p {
+    margin: 5px 0 0;
+    font-size: 0.75rem;
+    color: #888;
+    line-height: 1.2;
+}
+
+/* Distinctive styles for each (Optional) */
+.assistant:hover { border-color: #4cc9f0; }
+.friend:hover { border-color: #f72585; }
+.expert:hover { border-color: #4895ef; }
+
+
+/* Add this to your CSS */
+.chat-card.ai-chat {
+    border-left: 4px solid #4361ee; /* Branding blue */
+    background: linear-gradient(to right, #f0f4ff, #ffffff);
+}

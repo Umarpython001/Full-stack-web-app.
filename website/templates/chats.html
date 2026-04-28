@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+
+{% block title %}Messages{% endblock %}
+
+{% block csStyles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/chats.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="chats-container">
+
+    <h2 class="page-title">Recent Chats</h2>
+    
+    <div class="recent-chats-list">
+
+        {% for partner in current_user.chat_partners %}
+
+            {% if not partner.is_ai %}
+
+                <a href="{{ url_for('dm.send_dm', userName=partner.userName) }}" class="chat-link">
+
+                    <div class="chat-card">
+
+                        <div class="avatar-container">
+
+                            <img src="{{ url_for('static', filename='uploads/profile_pics/' ~ partner.uniqueProfilePicName) }}" 
+
+                                alt="{{ partner.userName }}" class="chat-avatar">
+
+                        </div>
+
+                        <div class="chat-details">
+
+                            <div class="chat-header">
+
+                                <h4>{{ partner.userName }}</h4>
+
+                            </div>
+                                
+                            <p class="chat-preview">Click to open conversation</p>
+
+                        </div>
+
+                    </div>
+
+                </a>
+            {% else %}
+                <a href="{{ url_for('dm_ai.dm_ai_model', model_name=partner.userName) }}" class="chat-link">
+
+                    <div class="chat-card ai-chat">
+
+                        <div class="avatar-container">
+
+                            <img src="{{ url_for('static', filename='images/' ~ partner.uniqueProfilePicName) }}" 
+
+                                alt="{{ partner.userName }}" class="chat-avatar">
+
+                        </div>
+
+                        <div class="chat-details">
+
+                            <div class="chat-header">
+
+                                <h4>{{ partner.userName }}</h4>
+
+                            </div>
+
+                            <p class="chat-preview">Chat with our intelligent AI model!</p>
+
+                        </div>
+
+                    </div>
+
+                </a>
+            {% endif %}
+
+        {% else %}
+
+            <div class="empty-state">
+
+                <p>No messages yet. Start a conversation!</p>
+
+            </div>
+
+        {% endfor %}
+
+
+        <div class="suggest-ai">
+                    <div class="ai-header">
+                        <h3>✨ Suggestions!</h3>
+                        <p>Chat with our intelligent AI models</p>
+                    </div>
+
+                    <div class="ai-grid">
+                        <a href="{{ url_for('dm_ai.dm_ai_model', model_name='qwen3-vl:4b') }}" class="ai-card assistant">
+                            <div class="ai-icon">🤖</div>
+                            <div class="ai-info">
+                                <h4>Assistant</h4>
+                                <p>Knowledgeable & Helpful</p>
+                            </div>
+                        </a>
+
+                    </div>
+        </div>
+
+
+
+    </div>
+
+</div>
+
+{% endblock %}

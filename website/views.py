@@ -44,6 +44,7 @@ def edit_profile():
         edited_first_name = request.form["editFirstName"]
         edited_last_name = request.form["editLastName"]
         edited_email = request.form["editEmail"]
+        edited_user_name = request.form["editUserName"]
         edited_PFP = request.files["editPFP"]
 
 
@@ -55,6 +56,9 @@ def edit_profile():
 
         if edited_email != user.email and len(edited_email) > 7 and ("@" and ".") in edited_email:
             user.email = edited_email
+
+        if edited_user_name != user.userName and len(edited_user_name) > 2:
+            user.userName = edited_user_name
 
         if edited_PFP: #Validate the uploaded pfp before deleting the old one to avoid a situation where the user uploads an invalid file and then we delete their old profile picture, leaving them with no profile picture. We also check if the user has a custom profile picture before deleting it, because if they have the default one, we don't want to delete that since it's used by multiple users and is stored in a different location.
             
@@ -99,4 +103,9 @@ def edit_profile():
 
 
 
+@views.route("/user/chats", methods=["GET", "POST"])
+@login_required
+def view_dms():
 
+
+    return render_template("chats.html")
