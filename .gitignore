@@ -13,3 +13,4 @@ website/static/uploads/user_posts/*
 **/__pycache__/
 .venv/
 .DS_Store
+.env
