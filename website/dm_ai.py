@@ -106,9 +106,9 @@ def send_message(data):
         print(f"Error communicating with the model: {e}")
         ai_response = {
             "answer": "Sorry, there was an error communicating with the model. Please try again later.",
-            "time_taken": 0
+            "timestamp": datetime.datetime.now().strftime('%H:%M')
         }
-        flash("Sorry, there was an error communicating with the model. Please try again later.", category="error")
+        emit("ai_reply", ai_response)
     else:   
         answer = ai_response["answer"]
         time_taken = ai_response["time_taken"]
