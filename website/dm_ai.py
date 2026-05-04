@@ -46,6 +46,7 @@ def ask_model(question):
         "answer": answer,
         "time_taken": time_taken
     }
+    print(f"Response received from model! Time taken: {time_taken:.2f} seconds")
 
     return result
 
