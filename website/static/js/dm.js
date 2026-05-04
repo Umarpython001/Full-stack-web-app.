@@ -22,8 +22,10 @@ function sendMesssageHUMAN(){
         socket.emit('send_message_to_human', {
             "room_id": roomID,
             "msg_content": msg_content,
-            "recepient_id": recepient_id
+            "recepient_id": recepient_id,
+            "recepient_username": recepient_username
         })
+
 
         msg_input.value = ''
 
@@ -35,7 +37,10 @@ function sendMesssageHUMAN(){
 
 submit_btn.onclick = sendMesssageHUMAN
 
+socket.emit('join', { "room_id": roomID });
+
 socket.on('receive_message_human', function(data){
+
 
     let msg_content = data.msg_content //The content of the message
     let sender = data.sender //The user id of the sender

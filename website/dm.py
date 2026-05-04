@@ -27,8 +27,6 @@ def send_dm(userName):
 
     room_id = f"room_{ min(recepient.id, sender.id) }_{ max(recepient.id, sender.id) }"
 
-
-
     if room_id not in rooms:
         rooms[room_id] = {
                 "members": {sender.id, recepient.id},
@@ -46,12 +44,31 @@ def send_dm(userName):
     return render_template("dm.html", recepient = recepient, room_id = room_id, messages = messages)
 
 
+@socketio.on("join")
+def join(data):
+
+    room_id = data.get("room_id")
+
+    if not room_id:
+        return
+
+    join_room(room_id)
+
+
+@socketio.on("disconnect")
+def disconnect():
+
+    room_id = session.get("room_id")
+
+    
+
 @socketio.on("send_message_to_human")
 def send_message(data):
 
     room_id = data.get("room_id")
     msg_content = data.get("msg_content")    
-    recepient_id = data.get("recepient_id")   
+    recepient_id = data.get("recepient_id") 
+    recepient_username = data.get("recepient_username")
 
     if not room_id or not msg_content: #This checks if the room_id or msg_content is empty. If either of them is empty, we don't want to send the message and we can just return from the function.
         return
@@ -64,7 +81,7 @@ def send_message(data):
         "timestamp": datetime.datetime.now().strftime('%H:%M') 
     }
 
-    emit("receive_message_human", reply_data)
+    emit("receive_message_human", reply_data, to=room_id)
 
     message = Message(senderID=current_user.id, recepientID=recepient_id, content=msg_content, timeStamp=datetime.datetime.now())
 
